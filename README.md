@@ -12,4 +12,4 @@
   * example :-  `ng build --configuration production --base-href "https://abhay420coder.github.io/frontend-assignment/"`
 
 * step-3
-  * `ngh --dir dist/abhay-kumar`
+  * `ngh --dir dist/frontend-assignment`
