@@ -66,7 +66,7 @@ export class MiniapplistComponent implements OnInit {
   playApp(event:any){
     let url = event.url;
     if(url.length){
-      url = "miniApp/"+url
+      url = "miniApp/miniApp/"+url
       this.router.navigate([url])
     }
     

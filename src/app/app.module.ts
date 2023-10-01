@@ -5,16 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PagenotfoundComponentComponent } from './pagenotfound-component/pagenotfound-component.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PagenotfoundComponentComponent
+    PagenotfoundComponentComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule 
+    HttpClientModule ,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
