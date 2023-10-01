@@ -12,8 +12,9 @@
               <a class="block md:text-white mr-4" href="#">Link 4</a> -->
             </div>
             <div class="flex text-sm" v-else>
-                <a class="p-2 ml-2 bg-white text-teal-500 font-semibold leading-none border border-gray-100 rounded hover:border-transparent hover:bg-gray-100" href="#">Login</a>
-              <a class="p-2 ml-2 bg-teal-500 text-gray-100 font-semibold leading-none border border-teal-600 rounded hover:border-transparent hover:bg-teal-600" href="#">Sign up</a>
+                <a class="p-2 ml-2 bg-white text-teal-500 font-semibold leading-none border border-gray-100 rounded hover:border-transparent hover:bg-gray-100" [routerLink]="['login']">Login</a>
+              <a class="p-2 ml-2 bg-teal-500 text-gray-100 font-semibold leading-none border border-teal-600 rounded hover:border-transparent hover:bg-teal-600" [routerLink]="['register']">Sign up</a>
+              <a class="p-2 ml-2 bg-red-500 text-gray-100 font-semibold leading-none border border-red-600 rounded hover:border-transparent hover:bg-red-600" [routerLink]="['logout']">Log Out</a>
             </div>
           </div>
       </nav>
