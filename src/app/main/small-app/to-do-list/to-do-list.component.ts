@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 export class ToDoListComponent implements OnInit , OnChanges {
   todoLists : any= [];
   myForm: any;
-  // url =globalUrls.TODO_RENDER_URL;
-  url = globalUrls.TODO_LOCOL_URL;
+  url =globalUrls.TODO_RENDER_URL;
+  // url = globalUrls.TODO_LOCOL_URL;
   constructor(
     private api: ApiService,
     private fb: FormBuilder,
