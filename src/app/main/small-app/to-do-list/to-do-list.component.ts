@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit,  } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { globalUrls } from 'src/assets/url';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './to-do-list.component.html',
   styleUrls: ['./to-do-list.component.scss']
 })
-export class ToDoListComponent implements OnInit , OnChanges {
+export class ToDoListComponent implements OnInit  {
   todoLists : any= [];
   myForm: any;
   url =globalUrls.TODO_RENDER_URL;
@@ -16,7 +16,6 @@ export class ToDoListComponent implements OnInit , OnChanges {
   constructor(
     private api: ApiService,
     private fb: FormBuilder,
-    private router:Router,
   ) { }
   
     ngOnInit(): void {
@@ -29,18 +28,14 @@ export class ToDoListComponent implements OnInit , OnChanges {
 
     }
 
-    ngOnChanges(changes: SimpleChanges): void {
-      // this.getTodoLists();
-    }
-
     async addTask(form: FormGroup){
       console.log('Valid?', form.valid); // true or false
       console.log('value', form.value);
-      if(!form.value.id)this.postTodoLists(form.value);
-      if(form.value.id)this.updateTodoLists(form.value , form.value.id);
+      if(!form.value.id) await this.postTodoLists(form.value);
+      if(form.value.id)await this.updateTodoLists(form.value , form.value.id);
       await this.getTodoLists();
       this.myForm.reset();
-      location.reload();
+      // location.reload();
     }
 
     editTask(todo:any){
@@ -66,6 +61,7 @@ export class ToDoListComponent implements OnInit , OnChanges {
       }
       this.api.postData(this.url , todoList).subscribe((data:any)=>{
         console.log("data => " , data);
+        this.getTodoLists();
       })
       
     }
@@ -78,9 +74,12 @@ export class ToDoListComponent implements OnInit , OnChanges {
       }
       this.api.putData(this.url+id , todoList).subscribe((data:any)=>{
         console.log("data => " , data);
+        this.getTodoLists();
       })
       
     }
+
+
 
     deleteTask(todo:any){
 
@@ -88,11 +87,14 @@ export class ToDoListComponent implements OnInit , OnChanges {
         "title": todo.title,
         "description":todo.description
       }
-      this.api.deleteData(this.url+todo["_id"] , todoList).subscribe((data:any)=>{
+      this.deleteTodoLists(this.url+todo["_id"] , todoList)
+    }
+
+    deleteTodoLists(m_url:any , body:any){
+      this.api.deleteData(m_url , body).subscribe((data:any)=>{
         console.log("data => " , data);
+        this.getTodoLists();
       })
-      this.getTodoLists();
-      location.reload();
     }
 
 
